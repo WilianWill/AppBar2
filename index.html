@@ -14,6 +14,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
   </head>
   <body>
     <header class="header">
@@ -58,12 +61,17 @@
             <th>id</th>
             <th>Nome</th>
             <th>Valor</th>
-            <th>Ações</th>
+            <th>Ações</th> 
           </tr>
         </thead>
         <tbody class="tBody"></tbody>
       </table>
     </main>
-    <script type="module" src="src/script/index.js"></script>
+   
+    <!-- htm2pdf lib -->
+    
+    <script type="module" src="src/script/index.js" defer></script>
+    
+
   </body>
 </html>

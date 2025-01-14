@@ -1,4 +1,7 @@
+
 /* Recuperar elementos do DOM */
+
+
 const prodName = document.querySelector("#prod-name");
 const prodPrice = document.querySelector("#prod-price");
 const addProdBtn = document.querySelector("#adicionar");
@@ -102,70 +105,51 @@ class Tabela {
     }
     /* funcao para imprimir */
     printTable() {
-
-        const printWindow = window.open("", "_blank");
-
-        const style = `
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-            th, td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: left;
-            }
-            th {
-                background-color: #f2f2f2;
-                font-weight: bold;
-            }
-            h1 {
-                text-align: center;
-                font-family: Arial, sans-serif;
-            }
-        </style>
+        // Criar uma tabela temporária para o PDF
+        const tabelaTemp = document.createElement("table");
+        tabelaTemp.style.width = "100%"; // Centralizar a tabela
+        tabelaTemp.style.textAlign = "left"; // Centralizar o texto
+        tabelaTemp.style.borderCollapse = "collapse"; // Melhorar layout
+        tabelaTemp.innerHTML = `
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 8px;">Nome</th>
+                <th style="border: 1px solid black; padding: 8px;">Valor</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
     `;
 
-        const content = `
-        <h1>Lista de Produtos</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${this.items.map(item => `
-                    <tr>
-                        <td>${item.id}</td>
-                        <td>${item.name}</td>
-                        <td>R$ ${item.price}</td>
-                    </tr>
-                `).join("")}
-            </tbody>
-        </table>
-    `;
-        printWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Imprimir Tabela</title>
-            ${style}
-        </head>
-        <body>
-            ${content}
-        </body>
-        </html>
-    `);
+        // Selecionar as linhas da tabela original
+        document.querySelectorAll(".table tr").forEach((row, index) => {
+            if (index === 0) return; // Pular o cabeçalho original
 
-        printWindow.document.close();
-        printWindow.focus();
-        printWindow.print();
-        printWindow.close();
+            const nome = row.querySelector("td:nth-child(2)"); // 2ª coluna: Nome
+            const valor = row.querySelector("td:nth-child(3)"); // 3ª coluna: Valor
+
+            if (nome && valor) {
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                <td style="border: 1px solid black; padding: 8px;">${nome.textContent}</td>
+                <td style="border: 1px solid black; padding: 8px;">${valor.textContent}</td>
+            `;
+                tabelaTemp.querySelector("tbody").appendChild(newRow);
+            }
+        });
+
+        // Configurações do html2pdf
+        const options = {
+            margin: [10, 10, 10, 10],
+            filename: "tabela.pdf",
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        };
+
+        // Gerar o PDF a partir da tabela temporária
+        html2pdf().set(options).from(tabelaTemp).save();
     }
+
+
 
 }
 
@@ -181,6 +165,11 @@ showItemsBtn.addEventListener("click", () => {
 
 const printBtn = document.querySelector("#print-btn");
 
-printBtn.addEventListener("click", () => {
+printBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!tabela.items.length) {
+        alert("Nenhum item cadastrado.");
+        return;
+    }
     tabela.printTable();
 });

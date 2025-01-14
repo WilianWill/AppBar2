@@ -1,0 +1,88 @@
+/* import poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding: 0 20px;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.table thead {
+  background-color: #f2f2f2;
+  text-align: left;
+  font-weight: bold;
+}
+
+.form-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: whitesmoke;
+  width: 250px;
+  box-shadow: 0px 0px 2px 0px;
+  padding: 10px;
+}
+
+.main-content_form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-add input {
+  width: 100%;
+  border-radius: 5px;
+  height: 30px;
+  border: 0.5px solid gray;
+  box-shadow: 0px 2px 2px 0px;
+  margin-bottom: 5px;
+  text-align: left;
+  padding-left: 5px;
+}
+
+#adicionar {
+  width: 80%;
+  text-align: center;
+}
+
+#showItems,
+#print-btn {
+  width: 80%;
+  text-align: center;
+  margin-top: 5px;
+  border: 0.5px solid gray;
+  box-shadow: 0px 2px 2px 0px;
+  border-radius: 5px;
+}

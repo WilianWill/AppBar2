@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabela do Bar</title>
+    <!-- css -->
+    <link rel="stylesheet" href="src/styles/style.css" />
+    <!-- font aswome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Tabela do Bar</h1>
+      <!--  <div class="left">
+        <form action="" class="search">
+          <div class="form-group">
+            <label for="search">Buscar</label>
+            <input type="text" name="search" id="search" placeholder="Buscar" />
+            <button type="submit" id="search-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+      </div> -->
+    </header>
+    <main class="main-content">
+      <div class="main-content_form-div">
+        <form action="" class="form-add">
+          <div class="main-content_form-group">
+            <label for="prod-name">
+              <h3>Nome do Produto</h3>
+            </label>
+            <input type="text" id="prod-name" placeholder="Nome do Produto" />
+            <label class="prod-price"> <h3>Preço do Produto</h3> </label>
+            <input
+              type="number"
+              step="0.01"
+              placeholder="valor"
+              id="prod-price"
+            />
+          </div>
+          <input type="submit" value="Adicionar" id="adicionar" />
+          <button id="showItems">Mostrar</button>
+          <button id="print-btn">Imprimir Tabela</button>
+        </form>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Nome</th>
+            <th>Valor</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody class="tBody"></tbody>
+      </table>
+    </main>
+    <script type="module" src="src/script/index.js"></script>
+  </body>
+</html>

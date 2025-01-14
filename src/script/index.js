@@ -21,13 +21,14 @@ class Tabela {
 
     addItem() {
         const itemName = prodName.value.toLowerCase().trim();
-        const itemPrice = parseFloat(prodPrice.value).toFixed(2);
+        const itemPrice = parseFloat(prodPrice.value);
 
-        if (itemName !== "" && itemName.length < 4 && !isNaN(itemPrice)) {
+
+        if (itemName && !isNaN(itemPrice)) {
             const newItem = {
                 id: this.items.length + 1,
                 name: itemName,
-                price: itemPrice,
+                price: itemPrice.toFixed(2),
             };
 
             this.items.push(newItem);
@@ -36,6 +37,8 @@ class Tabela {
 
             this.updateTable();
             this.clearFields();
+
+
         } else {
             alert("Preencha todos os campos corretamente.");
         }
